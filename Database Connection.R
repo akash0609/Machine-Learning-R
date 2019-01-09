@@ -3,8 +3,7 @@ library(RJDBC)
 
 vDriver <- JDBC(driverClass="com.vertica.jdbc.Driver", classPath="D:\\Software\\Vertica\\vertica-jdbc-9.1.0-0.jar")
 
-#vertica <- dbConnect(vDriver, "jdbc:vertica://APPDADC706:5433/VerticaBIDev", "dbadmin", "Avery@123")
-vertica <- dbConnect(vDriver, "jdbc:vertica://APDVADC394:5433/VerticaBIDev", "dbadmin", "Avery@123")
+vertica <- dbConnect(vDriver, "jdbc:vertica://server_name:port/DB_Name", "user_name", "password")
 
 myframe = dbGetQuery(vertica, "select * from v_monitor.active_events")
 
