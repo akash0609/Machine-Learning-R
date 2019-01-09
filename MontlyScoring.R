@@ -1,4 +1,4 @@
-
+# Code to calculate RFM Values
 setwd("C:/Users/0130719/Desktop")
 sales <- read.csv("RFM Data dump from Sales Order-datadump.csv")
 
