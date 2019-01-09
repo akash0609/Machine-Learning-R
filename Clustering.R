@@ -1,5 +1,4 @@
-#setwd("C:/Users/0130719/Desktop/RFM Progress")
-#sorders <- read.csv("RFM Data dump from Sales Order-datadump.csv")
+
 
 #sorders$Date <- as.Date(sorders$Date, "%m/%d/%y")
 
@@ -12,9 +11,6 @@ library(forecast)
 #install.packages("sqldf")
 
 library(sqldf)
-
-vDriver <- JDBC(driverClass="com.vertica.jdbc.Driver", classPath="D:\\Software\\Vertica\\vertica-jdbc-9.1.0-0.jar")
-vertica <- dbConnect(vDriver, "jdbc:vertica://APDVADC394:5433/VerticaBIDev", "dbadmin", "Avery@123")
 
 sales = dbGetQuery(vertica, "select * from public.sales_orders")
 
@@ -32,8 +28,6 @@ sales$Seg_Country<- paste(sales[,"Segment"],sales[,"Country"])
 sales$Seg_Country<- as.factor(sales$Seg_Country)
 
 sales$Date <- as.Date(sales$Date, "%m/%d/%y")
-
-
 
 str(sorders)
 # to get RFM values
@@ -67,8 +61,7 @@ get_rfm<- function(SalesOrder,sDate ,eDate ,tIDCol="CustCD",tDate="Date",tCustNa
   Monetary_Val = m2[,1]/Frequency
   newSalesOrder = cbind(newSalesOrder,Monetary_Val)
   
-  return(newSalesOrder)
-  
+  return(newSalesOrder) 
 }
 
 # Function to generate the RFM Matrix
